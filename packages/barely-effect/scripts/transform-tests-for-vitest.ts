@@ -87,9 +87,10 @@ export function transformContent(content: string): string {
     },
   )
 
-  // Transform mock( to vi.fn( - be careful not to match mockXXX methods
-  // Match mock( that is not preceded by a dot (method call) or alphanumeric (part of identifier)
-  content = content.replace(/(?<![.\w])mock\(/g, "vi.fn(")
+  // Transform mock( and mock<...>( to vi.fn( and vi.fn<...>( - be careful not to match mockXXX methods
+  // Match mock( or mock<...>( that is not preceded by a dot (method call) or alphanumeric (part of identifier)
+  // Also handles typeof mock<...> in type annotations
+  content = content.replace(/(?<![.\w])mock(<[^>]+>)?(?=\(|>)/g, "vi.fn$1")
 
   // Transform spyOn( to vi.spyOn( - same care needed
   content = content.replace(/(?<![.\w])spyOn\(/g, "vi.spyOn(")

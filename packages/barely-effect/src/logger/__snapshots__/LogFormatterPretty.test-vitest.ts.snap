@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LogFormatterPretty > with colors > formats a basic info entry 1`] = `"[90m12:30:45.123Z[39m [1m[32mINFO[39m[22m"`;
+
+exports[`LogFormatterPretty > with colors > formats debug level 1`] = `"[90m12:30:45.123Z[39m [1m[35mDEBUG[39m[22m details"`;
+
+exports[`LogFormatterPretty > with colors > formats error level 1`] = `"[90m12:30:45.123Z[39m [1m[31mERROR[39m[22m fail"`;
+
+exports[`LogFormatterPretty > with colors > formats warn level 1`] = `"[90m12:30:45.123Z[39m [1m[33mWARN[39m[22m careful"`;
+
+exports[`LogFormatterPretty > with colors > formats with service and message 1`] = `"[90m12:30:45.123Z[39m [1m[32mINFO[39m[22m [90m[[39m [33mMyService[39m [90m][39m hello world"`;
+
+exports[`LogFormatterPretty > without colors > formats a basic info entry 1`] = `"12:30:45.123Z INFO"`;
+
+exports[`LogFormatterPretty > without colors > formats critical level 1`] = `"12:30:45.123Z CRITICAL"`;
+
+exports[`LogFormatterPretty > without colors > formats debug level 1`] = `"12:30:45.123Z DEBUG"`;
+
+exports[`LogFormatterPretty > without colors > formats error level 1`] = `"12:30:45.123Z ERROR"`;
+
+exports[`LogFormatterPretty > without colors > formats trace level 1`] = `"12:30:45.123Z TRACE"`;
+
+exports[`LogFormatterPretty > without colors > formats warn level 1`] = `"12:30:45.123Z WARN"`;
+
+exports[`LogFormatterPretty > without colors > formats with message 1`] = `"12:30:45.123Z INFO hello world"`;
+
+exports[`LogFormatterPretty > without colors > formats with message and parameters 1`] = `"12:30:45.123Z INFO msg {"key":"value","count":42}"`;
+
+exports[`LogFormatterPretty > without colors > formats with parameters 1`] = `"12:30:45.123Z INFO {"key":"value"}"`;
+
+exports[`LogFormatterPretty > without colors > formats with resolved error 1`] = `
+"12:30:45.123Z ERROR something failed
+{
+    "name": "TypeError",
+    "error": "x is not a function",
+    "stack": [
+        "at foo (bar.ts:1:1)"
+    ]
+}"
+`;
+
+exports[`LogFormatterPretty > without colors > formats with service 1`] = `"12:30:45.123Z INFO [ MyService ]"`;
+
+exports[`LogFormatterPretty > without colors > formats with service and message 1`] = `"12:30:45.123Z INFO [ MyService ] hello world"`;
