@@ -1,37 +1,37 @@
-import { type DurationLike } from "./temporal"
+import { DateTime, Duration } from "effect"
 
 type PublicInterface<T> = { [K in keyof T]: T[K] }
 
 export type IClock = PublicInterface<AbstractClock>
 
 export abstract class AbstractClock implements IClock {
-  abstract now(): Temporal.Instant
+  abstract now(): DateTime.Utc
 
   nowDate(): Date {
-    return new Date(this.now().epochMilliseconds)
+    return new Date(this.now().epochMillis)
   }
 }
 
 export class Clock extends AbstractClock {
-  now(): Temporal.Instant {
-    return Temporal.Now.instant()
+  now(): DateTime.Utc {
+    return DateTime.nowUnsafe()
   }
 }
 
 export class TestClock extends AbstractClock {
-  constructor(private _now: Temporal.Instant) {
+  constructor(private _now: DateTime.Utc) {
     super()
   }
 
-  now(): Temporal.Instant {
+  now(): DateTime.Utc {
     return this._now
   }
 
-  advance(duration: DurationLike): void {
-    this._now = this._now.add(Temporal.Duration.from(duration))
+  advance(duration: Duration.Duration): void {
+    this._now = DateTime.addDuration(this._now, duration)
   }
 
-  reset(now: Temporal.Instant): void {
+  reset(now: DateTime.Utc): void {
     this._now = now
   }
 }

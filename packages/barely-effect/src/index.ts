@@ -1,5 +1,3 @@
-import "temporal-polyfill/global"
-
 export * from "./platform/filesystem/AbsolutePath"
 export * from "./ansi-colors"
 export * from "./assert"
@@ -10,4 +8,3 @@ export * from "./utils/jsonStringify"
 export * from "./logger"
 export * from "./platform/networking"
 export * from "./platform/process/ProcessContext"
-export * from "./time/temporal"
