@@ -1,0 +1,2 @@
+[test]
+preload = ["./packages/barely-effect/src/index.ts"]

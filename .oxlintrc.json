@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "typescript", "unicorn"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "typescript/explicit-function-return-type": ["error", { "allowExpressions": true }],
+    "unicorn/prefer-node-protocol": "error",
+    "no-empty-file": "off",
+    "no-console": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/examples/**"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

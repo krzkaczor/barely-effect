@@ -1,0 +1,90 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`glob finds all entries with '**' 1`] = `
+[
+  {
+    "path": AbsolutePathClazz {
+      "path": "/",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/.gitignore",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/index.ts",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/lib",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/lib/components",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/lib/components/Button.jsx",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/lib/components/Home.tsx",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/lib/server.ts",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/proj/README.md",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/tmp",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/tmp/another-proj",
+    },
+    "type": "dir",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/tmp/another-proj/CONTRIBUTING.md",
+    },
+    "type": "file",
+  },
+  {
+    "path": AbsolutePathClazz {
+      "path": "/tmp/another-proj/index.ts",
+    },
+    "type": "file",
+  },
+]
+`;

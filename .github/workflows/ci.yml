@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+
+      - run: bun run fmt
+      - run: bun run lint
+      - run: bun test
+
+  test-vitest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - runtime: node
+            version: 20
+          - runtime: node
+            version: 22
+          - runtime: node
+            version: 23
+          - runtime: deno
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: actions/setup-node@v4
+        if: matrix.runtime == 'node'
+        with:
+          node-version: ${{ matrix.version }}
+
+      - uses: denoland/setup-deno@v2
+        if: matrix.runtime == 'deno'
+
+      - run: bun install --frozen-lockfile
+
+      - run: cd packages/barely-effect && npm run test:vitest

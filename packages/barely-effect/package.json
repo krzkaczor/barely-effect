@@ -1,0 +1,71 @@
+{
+  "name": "barely-effect",
+  "version": "0.1.0",
+  "description": "A missing standard library for TypeScript, providing utilities for async orchestration, error handling, filesystem abstraction, and common patterns",
+  "keywords": [
+    "async",
+    "result",
+    "stdlib",
+    "task",
+    "typescript",
+    "utilities"
+  ],
+  "license": "MIT",
+  "author": "Kris Kaczor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krzkaczor/barely-effect.git"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./platform/filesystem": {
+      "types": "./dist/platform/filesystem/index.d.ts",
+      "default": "./dist/platform/filesystem/index.js"
+    },
+    "./platform/getPort": {
+      "types": "./dist/platform/getPort/index.d.ts",
+      "default": "./dist/platform/getPort/index.js"
+    },
+    "./platform/JsonHttpClient": {
+      "types": "./dist/platform/JsonHttpClient/index.d.ts",
+      "default": "./dist/platform/JsonHttpClient/index.js"
+    },
+    "./platform/ProcessContext": {
+      "types": "./dist/platform/ProcessContext/index.d.ts",
+      "default": "./dist/platform/ProcessContext/index.js"
+    },
+    "./platform/safeFetch": {
+      "types": "./dist/platform/safeFetch/index.d.ts",
+      "default": "./dist/platform/safeFetch/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && bun run scripts/fix-imports.ts && cp ../../README.md .",
+    "lint": "oxlint --type-aware --type-check --deny-warnings",
+    "lint:fix": "bun run lint --fix --fix-dangerously --fix-suggestions",
+    "test": "bun test",
+    "test:vitest": "bun run scripts/transform-tests-for-vitest.ts && vitest run",
+    "fix": "cd ../.. && bun run fix"
+  },
+  "dependencies": {
+    "effect": "4.0.0-beta.23",
+    "remeda": "^2.32.0",
+    "temporal-polyfill": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "vitest": "^3.0.0",
+    "zod": "^4.3.5"
+  }
+}
