@@ -29,25 +29,13 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./platform/networking": {
+      "types": "./dist/networking/index.d.ts",
+      "default": "./dist/networking/index.js"
+    },
     "./platform/filesystem": {
       "types": "./dist/platform/filesystem/index.d.ts",
       "default": "./dist/platform/filesystem/index.js"
-    },
-    "./platform/getPort": {
-      "types": "./dist/platform/getPort/index.d.ts",
-      "default": "./dist/platform/getPort/index.js"
-    },
-    "./platform/JsonHttpClient": {
-      "types": "./dist/platform/JsonHttpClient/index.d.ts",
-      "default": "./dist/platform/JsonHttpClient/index.js"
-    },
-    "./platform/ProcessContext": {
-      "types": "./dist/platform/ProcessContext/index.d.ts",
-      "default": "./dist/platform/ProcessContext/index.js"
-    },
-    "./platform/safeFetch": {
-      "types": "./dist/platform/safeFetch/index.d.ts",
-      "default": "./dist/platform/safeFetch/index.js"
     }
   },
   "scripts": {
