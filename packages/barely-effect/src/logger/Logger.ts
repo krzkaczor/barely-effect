@@ -1,6 +1,6 @@
 import { assertNever } from "../assert"
-import { Clock } from "../time/Clock"
 import { LogFormatterPretty } from "./LogFormatterPretty"
+import { LoggerClock } from "./LoggerClock"
 import { type LogLevel } from "./LogLevel"
 import { LEVEL } from "./LogLevel"
 import { parseLogArguments } from "./parseLogArguments"
@@ -37,7 +37,7 @@ export class Logger implements ILogger {
       logLevel: options.logLevel ?? "INFO",
       service: options.service,
       utc: options.utc ?? false,
-      clock: options.clock ?? new Clock(),
+      clock: options.clock ?? new LoggerClock(),
       reportError: options.reportError ?? (() => {}),
       transports: options.transports ?? defaultTransports,
     }
@@ -111,7 +111,7 @@ export class Logger implements ILogger {
       ...parsed,
       resolvedError: parsed.error && resolveError(parsed.error),
       level,
-      time: this.options.clock.nowDate(),
+      time: this.options.clock.now(),
       service: this.options.service,
     }
   }

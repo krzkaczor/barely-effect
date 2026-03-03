@@ -1,4 +1,5 @@
-import { type IClock } from "../time/Clock"
+import type { ILoggerClock } from "./LoggerClock"
+
 import { type LogLevel } from "./LogLevel"
 import { type ResolvedError } from "./resolveError"
 
@@ -27,7 +28,7 @@ export interface LoggerOptions {
   logLevel: LogLevel
   service?: string
   utc: boolean
-  clock: IClock
+  clock: ILoggerClock
   reportError: (entry: LogEntry) => void
   transports: LoggerTransportOptions[]
 }

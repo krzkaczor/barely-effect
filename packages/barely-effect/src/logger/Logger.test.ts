@@ -1,6 +1,7 @@
 import { describe, expect, it, mock } from "bun:test"
 
-import { TestClock } from "../time/Clock"
+import type { ILoggerClock } from "./LoggerClock"
+
 import { LogFormatterJson } from "./LogFormatterJson"
 import { Logger } from "./Logger"
 import { type LogEntry, type LoggerTransport } from "./types"
@@ -28,7 +29,7 @@ function createTestLogger(overrides?: Parameters<typeof Logger.prototype.configu
   clock: TestClock
 } {
   const transport = new MockTransport()
-  const clock = new TestClock(Temporal.Instant.from("2024-01-15T12:00:00Z"))
+  const clock = new TestClock(new Date("2024-01-15T12:00:00Z"))
   const logger = new Logger({
     logLevel: "TRACE",
     clock,
@@ -227,7 +228,7 @@ describe(Logger.name, () => {
 
   describe("clock integration", () => {
     it("uses the provided clock for timestamps", () => {
-      const clock = new TestClock(Temporal.Instant.from("2024-06-15T10:30:00Z"))
+      const clock = new TestClock(new Date("2024-06-15T10:30:00Z"))
       const transport = new MockTransport()
       const logger = new Logger({
         logLevel: "TRACE",
@@ -308,3 +309,11 @@ describe(Logger.name, () => {
     })
   })
 })
+
+class TestClock implements ILoggerClock {
+  constructor(private readonly _now: Date) {}
+
+  now(): Date {
+    return this._now
+  }
+}
