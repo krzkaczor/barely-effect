@@ -1,37 +1,22 @@
-import { DateTime, Duration } from "effect"
+import { Clock, DateTime, Duration, Clock as EffectClock } from "effect"
+import { runSync, type Effect } from "effect/Effect"
 
 type PublicInterface<T> = { [K in keyof T]: T[K] }
 
-export type IClock = PublicInterface<AbstractClock>
+export type IBarelyClock = PublicInterface<BarelyClock>
 
-export abstract class AbstractClock implements IClock {
-  abstract now(): DateTime.Utc
+export class BarelyClock {
+  constructor(private readonly effectClock: EffectClock.Clock = Clock.Clock.defaultValue()) {}
+
+  now(): DateTime.Utc {
+    return DateTime.fromDateUnsafe(this.nowDate())
+  }
 
   nowDate(): Date {
-    return new Date(this.now().epochMillis)
-  }
-}
-
-export class Clock extends AbstractClock {
-  now(): DateTime.Utc {
-    return DateTime.nowUnsafe()
-  }
-}
-
-export class TestClock extends AbstractClock {
-  constructor(private _now: DateTime.Utc) {
-    super()
+    return new Date(runSync(this.effectClock.currentTimeMillis))
   }
 
-  now(): DateTime.Utc {
-    return this._now
-  }
-
-  advance(duration: Duration.Duration): void {
-    this._now = DateTime.addDuration(this._now, duration)
-  }
-
-  reset(now: DateTime.Utc): void {
-    this._now = now
+  sleep(d: Duration.Duration): Effect<void> {
+    return this.effectClock.sleep(d)
   }
 }
