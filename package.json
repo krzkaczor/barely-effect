@@ -13,6 +13,7 @@
     "fix": "bun run lint:fix && bun run fmt:fix && bun test"
   },
   "dependencies": {
+    "effect": "4.0.0-beta.25",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
